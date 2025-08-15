@@ -187,22 +187,25 @@ function PerformanceChart({ data }: { data: AnalyticsData[] }) {
         </div>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-8">
         {/* Views Chart */}
         <div>
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center justify-between mb-3">
             <span className="text-sm font-medium text-gray-700">Daily Views</span>
             <span className="text-sm text-gray-600">Peak: {maxViews}</span>
           </div>
-          <div className="flex items-end space-x-2 h-24">
+          <div className="flex items-end justify-between space-x-3 h-32 bg-gray-50 rounded-lg p-4">
             {data.map((item, index) => (
-              <div key={index} className="flex-1 flex flex-col items-center">
-                <div
-                  className="w-full bg-blue-500 rounded-t opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
-                  style={{ height: `${(item.views / maxViews) * 100}%` }}
-                  title={`${item.views} views on ${item.period}`}
-                />
-                <span className="text-xs text-gray-500 mt-2">{item.period.split(' ')[1]}</span>
+              <div key={index} className="flex flex-col items-center flex-1">
+                <div className="w-full flex flex-col items-center">
+                  <div
+                    className="w-8 bg-blue-500 rounded-t hover:bg-blue-600 transition-colors cursor-pointer shadow-sm"
+                    style={{ height: `${Math.max((item.views / maxViews) * 96, 4)}px` }}
+                    title={`${item.views} views on ${item.period}`}
+                  />
+                  <span className="text-xs text-gray-600 mt-2 font-medium">{item.period.split(' ')[1]}</span>
+                </div>
+                <span className="text-xs text-blue-600 font-semibold mt-1">{item.views}</span>
               </div>
             ))}
           </div>
@@ -210,19 +213,22 @@ function PerformanceChart({ data }: { data: AnalyticsData[] }) {
 
         {/* Inquiries Chart */}
         <div>
-          <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center justify-between mb-3">
             <span className="text-sm font-medium text-gray-700">Daily Inquiries</span>
             <span className="text-sm text-gray-600">Peak: {maxInquiries}</span>
           </div>
-          <div className="flex items-end space-x-2 h-16">
+          <div className="flex items-end justify-between space-x-3 h-20 bg-gray-50 rounded-lg p-4">
             {data.map((item, index) => (
-              <div key={index} className="flex-1 flex flex-col items-center">
-                <div
-                  className="w-full bg-green-500 rounded-t opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
-                  style={{ height: `${maxInquiries > 0 ? (item.inquiries / maxInquiries) * 100 : 0}%` }}
-                  title={`${item.inquiries} inquiries on ${item.period}`}
-                />
-                <span className="text-xs text-gray-500 mt-2">{item.period.split(' ')[1]}</span>
+              <div key={index} className="flex flex-col items-center flex-1">
+                <div className="w-full flex flex-col items-center">
+                  <div
+                    className="w-8 bg-green-500 rounded-t hover:bg-green-600 transition-colors cursor-pointer shadow-sm"
+                    style={{ height: `${Math.max(maxInquiries > 0 ? (item.inquiries / maxInquiries) * 48 : 0, 2)}px` }}
+                    title={`${item.inquiries} inquiries on ${item.period}`}
+                  />
+                  <span className="text-xs text-gray-600 mt-2 font-medium">{item.period.split(' ')[1]}</span>
+                </div>
+                <span className="text-xs text-green-600 font-semibold mt-1">{item.inquiries}</span>
               </div>
             ))}
           </div>
