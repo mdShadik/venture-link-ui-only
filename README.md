@@ -1,224 +1,132 @@
-Here's a comprehensive README.md file for your VentureLink GitHub repository:
+# VentureLink - Business Acquisition Platform Prototype
 
-# VentureLink 🚀
+A Next.js prototype for a business acquisition platform that connects buyers and sellers. This is a demo application showcasing the UI/UX design and user flows for both buyer and seller experiences.
 
-VentureLink is a premium business acquisition platform that connects ambitious buyers with motivated sellers. Built with cutting-edge technology, it streamlines the entire M&A process from discovery to closing with AI-powered matching, comprehensive analytics, and secure deal management.
+## What This Is
 
+This is a **frontend prototype** built to demonstrate:
+- User interface design for a business acquisition platform
+- Onboarding flows for buyers and sellers
+- Dashboard experiences for both user types
+- Deal management and analytics interfaces
 
+**Note**: This is a demo with mock data - no real backend or database integration.
 
-## ✨ Features
+## Features Implemented
 
-### 🎯 **Smart Matching**
-- AI-powered algorithm matches buyers and sellers based on compatibility
-- Advanced filtering by industry, budget, location, and business stage
-- Swipe-based discovery interface for intuitive browsing
+### 🏠 **Landing Page**
+- Professional marketing site with hero section
+- Feature highlights and testimonials
+- Responsive design
 
-### 👥 **Dual User Experience**
-- **Buyers**: Discover businesses, manage deal pipeline, track acquisitions
-- **Sellers**: Create listings, analyze performance, manage buyer interest
+### 🔐 **Authentication**
+- Login page with demo credentials
+- User type selection (buyer/seller)
 
-### 📊 **Comprehensive Analytics**
-- Real-time performance tracking and engagement metrics
-- Geographic and demographic insights
-- Conversion rate optimization tools
+### 📝 **Onboarding Flows**
+- **Buyer Flow**: Investment preferences, budget, industries
+- **Seller Flow**: Business information, financials, selling details (6 steps)
+
+### 👤 **User Profiles**
+- Personal profile management
+- Public profile view
+- Investment/business preferences
+
+### 📊 **Dashboards**
+- Role-specific navigation and content
+- **Buyer Dashboard**: Discover, matches, deals tracking
+- **Seller Dashboard**: Listing management, buyer interest, analytics
+
+### 🔍 **Discovery**
+- Swipe-based interface for browsing opportunities
+- Match system with compatibility scoring
 
 ### 💼 **Deal Management**
-- End-to-end deal tracking from initial interest to closing
-- Document sharing with version control and access permissions
-- Milestone tracking and progress visualization
+- Deal pipeline tracking
+- Milestone and document management
+- Timeline visualization
 
-### 💬 **Secure Communication**
-- Built-in messaging system with buyer-seller communication
-- Video call integration for virtual meetings
-- Notification system for real-time updates
+### 📈 **Analytics** (Seller)
+- Performance charts and metrics
+- Audience insights
+- Geographic and device analytics
 
-### 📱 **Modern Interface**
-- Fully responsive design for desktop, tablet, and mobile
-- Beautiful UI with smooth animations and micro-interactions
-- Dark/light theme support with system preference detection
+## Tech Stack
 
-## 🛠️ Tech Stack
+- **Next.js 14** - React framework with App Router
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **shadcn/ui** - UI component library
+- **Framer Motion** - Animations
+- **Lucide React** - Icons
 
-| Category | Technology |
-|----------|------------|
-| **Framework** | Next.js 14 with App Router |
-| **Language** | TypeScript |
-| **Styling** | Tailwind CSS + shadcn/ui |
-| **Animations** | Framer Motion |
-| **Icons** | Lucide React |
-| **Notifications** | Sonner |
-| **State Management** | React Hooks + Context |
-| **Architecture** | Clean Architecture with Use Cases |
+## Installation
 
-## 🚀 Quick Start
+```bash
+# Clone the repository
+git clone https://github.com/your-username/venturelink.git
+cd venturelink
 
-### Prerequisites
-- Node.js 18.0 or later
-- npm or yarn package manager
+# Install dependencies
+npm install
 
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/venturelink.git
-   cd venturelink
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env.local
-   # Edit .env.local with your configuration
-   ```
-
-4. **Run the development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
-
-5. **Open your browser**
-   
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 📁 Project Structure
-
-```
-venturelink/
-├── app/                          # Next.js App Router
-│   ├── (auth)/                   # Authentication routes
-│   │   ├── login/
-│   │   └── onboarding/
-│   │       ├── buyer/
-│   │       └── seller/
-│   ├── dashboard/                # Dashboard layout
-│   ├── discover/                 # Business discovery
-│   ├── matches/                  # Match management
-│   ├── deals/                    # Deal tracking
-│   ├── messages/                 # Communication
-│   ├── my-listing/               # Seller listing management
-│   ├── interested-buyers/        # Buyer pipeline
-│   ├── analytics/                # Performance analytics
-│   ├── profile/                  # User profiles
-│   └── settings/                 # User settings
-├── components/                   # Reusable UI components
-│   ├── ui/                       # shadcn/ui components
-│   └── onboarding/               # Onboarding flows
-├── entities/                     # TypeScript interfaces
-├── repositories/                 # Data access layer
-├── use-cases/                    # Business logic
-├── lib/                          # Utility functions
-└── public/                       # Static assets
+# Run development server
+npm run dev
 ```
 
-## 🎮 Usage Guide
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### For Buyers 💼
+## Demo Credentials
 
-1. **Sign Up** - Create account and complete buyer onboarding
-2. **Set Preferences** - Define budget, industries, and criteria
-3. **Discover** - Browse businesses using swipe interface
-4. **Connect** - Message sellers and request information
-5. **Manage Deals** - Track progress through acquisition pipeline
+- **Buyer**: `buyer@example.com` / `demo123`
+- **Seller**: `seller@example.com` / `demo123`
 
-### For Sellers 🏢
+## Project Structure
 
-1. **Register** - Create account and complete business profile
-2. **List Business** - Add comprehensive business information
-3. **Attract Buyers** - Optimize listing for maximum visibility
-4. **Review Interest** - Analyze buyer engagement and inquiries
-5. **Close Deals** - Manage negotiations and documentation
+```
+app/
+├── (auth)/                 # Authentication pages
+├── dashboard/              # Main dashboard
+├── discover/               # Business discovery
+├── matches/                # Match management
+├── deals/                  # Deal tracking
+├── my-listing/             # Seller listing management
+├── interested-buyers/      # Buyer pipeline
+├── analytics/              # Performance analytics
+├── profile/                # User profiles
+└── settings/               # User settings
 
-## 🔧 Available Scripts
+components/
+├── ui/                     # Reusable UI components
+└── onboarding/             # Onboarding flow components
+```
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server |
-| `npm run build` | Build production application |
-| `npm run start` | Start production server |
-| `npm run lint` | Run ESLint |
-| `npm run type-check` | Run TypeScript compiler |
+## What's NOT Included
 
-## 🏗️ Architecture
+- No backend/API integration
+- No real database
+- No authentication system
+- No file uploads
+- No real messaging system
+- No payment processing
 
-VentureLink follows **Clean Architecture** principles:
+This is purely a frontend prototype with mock data for demonstration purposes.
 
-- **Entities**: Core business models and interfaces
-- **Use Cases**: Business logic and application rules
-- **Repositories**: Data access abstractions
-- **Controllers**: API routes and request handlers
-- **UI Components**: Presentation layer with React
+## Purpose
 
-## 🤝 Contributing
+This prototype demonstrates:
+1. **UI/UX Design** - Clean, professional interface
+2. **User Flows** - Complete buyer and seller journeys
+3. **Component Architecture** - Reusable React components
+4. **Responsive Design** - Works on desktop and mobile
+5. **Modern Development** - TypeScript, Next.js best practices
 
-We welcome contributions! Please follow these steps:
+Perfect for showcasing frontend development skills and design capabilities for a business acquisition platform concept.
 
-1. **Fork the repository**
-2. **Create feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Commit changes** (`git commit -m 'Add amazing feature'`)
-4. **Push to branch** (`git push origin feature/amazing-feature`)
-5. **Open Pull Request**
+## License
 
-### Development Guidelines
-
-- Follow TypeScript best practices
-- Use conventional commit messages
-- Add tests for new features
-- Update documentation as needed
-- Ensure responsive design compatibility
-
-## 📈 Roadmap
-
-- [ ] **AI-Powered Valuation** - Automated business valuation tools
-- [ ] **Blockchain Integration** - Smart contracts for deal execution  
-- [ ] **Advanced Analytics** - Predictive modeling and market insights
-- [ ] **Mobile Apps** - Native iOS and Android applications
-- [ ] **API Platform** - Public API for third-party integrations
-- [ ] **White Label** - Customizable platform for brokers
-
-## 🔒 Security
-
-- All data is encrypted in transit and at rest
-- User authentication with secure session management
-- Document access controls with permission levels
-- Regular security audits and vulnerability assessments
-
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [Next.js](https://nextjs.org/) - The React Framework
-- [shadcn/ui](https://ui.shadcn.com/) - Beautiful UI Components  
-- [Tailwind CSS](https://tailwindcss.com/) - Utility-first CSS
-- [Framer Motion](https://www.framer.com/motion/) - Animation Library
-- [Lucide](https://lucide.dev/) - Icon Library
-
-## 📞 Support
-
-- 📧 **Email**: support@venturelink.com
-- 💬 **Discord**: [Join our community](https://discord.gg/venturelink)
-- 📚 **Documentation**: [docs.venturelink.com](https://docs.venturelink.com)
-- 🐛 **Issues**: [GitHub Issues](https://github.com/your-username/venturelink/issues)
+MIT License
 
 ***
 
-
-
-**Built with ❤️ for entrepreneurs worldwide**
-
-[Website](https://venturelink.com) -  [Demo](https://demo.venturelink.com) -  [Documentation](https://docs.venturelink.com)
-
-⭐ **Star us on GitHub** if you find VentureLink useful!
-
-
-
-This README includes all the standard sections with proper markdown formatting, badges, tables, code blocks, and a professional structure that will look great on GitHub! 🚀
+**A frontend prototype showcasing modern web development practices** 💻
