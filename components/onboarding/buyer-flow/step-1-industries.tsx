@@ -1,4 +1,3 @@
-// components/onboarding/buyer-flow/step-1-industries.tsx
 'use client';
 
 import { useState } from 'react';

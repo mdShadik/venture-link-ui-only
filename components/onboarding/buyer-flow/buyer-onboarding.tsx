@@ -1,4 +1,3 @@
-// components/onboarding/buyer-flow/buyer-onboarding.tsx
 'use client';
 
 import { useState } from 'react';

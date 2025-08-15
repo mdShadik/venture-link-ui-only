@@ -1,4 +1,3 @@
-// components/onboarding/seller-flow/step-3-financials.tsx
 'use client';
 
 import { useState } from 'react';

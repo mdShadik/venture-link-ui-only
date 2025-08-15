@@ -1,4 +1,3 @@
-// components/onboarding/buyer-flow/step-5-timeline-experience.tsx
 'use client';
 
 import { useState } from 'react';

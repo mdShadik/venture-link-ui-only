@@ -1,5 +1,3 @@
-// lib/repositories/implementations/mock-match-repository.ts
-
 import { Match } from '../../entities/match';
 import { MatchRepository } from '../interfaces/match-repository';
 

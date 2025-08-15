@@ -1,4 +1,3 @@
-// lib/repositories/implementations/mock-user-repository.ts
 import { mockUsers } from '@/data/mock/uers';
 import { User } from '../../entities/user';
 import { UserRepository } from '../interfaces/user-repository';

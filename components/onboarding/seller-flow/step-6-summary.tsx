@@ -1,4 +1,3 @@
-// components/onboarding/seller-flow/step-6-summary.tsx
 'use client';
 
 import { motion } from 'framer-motion';

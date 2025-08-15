@@ -1,4 +1,3 @@
-// components/onboarding/buyer-flow/step-2-budget.tsx
 'use client';
 
 import { useState } from 'react';

@@ -1,4 +1,3 @@
-// components/onboarding/buyer-flow/step-4-acquisition-type.tsx
 'use client';
 
 import { useState } from 'react';

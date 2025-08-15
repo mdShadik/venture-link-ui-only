@@ -1,4 +1,3 @@
-// components/swipe/buyer-profile-modal.tsx
 'use client';
 
 import { User } from '@/lib/entities/user';

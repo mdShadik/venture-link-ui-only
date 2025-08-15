@@ -1,4 +1,3 @@
-// lib/repositories/implementations/mock-venture-repository.ts
 import { Venture } from '../../entities/venture';
 import { VentureRepository } from '../interfaces/venture-repository';
 import { mockVentures } from '../../../data/mock/ventures';

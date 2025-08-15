@@ -1,4 +1,3 @@
-// app/(auth)/onboarding/seller/page.tsx
 'use client';
 
 import { useRouter } from 'next/navigation';

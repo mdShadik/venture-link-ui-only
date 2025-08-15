@@ -1,4 +1,3 @@
-// app/deals/[dealId]/page.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
