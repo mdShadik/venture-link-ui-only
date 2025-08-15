@@ -1,7 +1,7 @@
 // app/dashboard/dashboard-layout-client.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
@@ -15,20 +15,20 @@ import {
   Settings,
   Bell,
   Menu,
-  X
+  X,
+  Building,
+  TrendingUp,
+  BarChart3
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const NAVIGATION_ITEMS = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/discover', label: 'Discover', icon: Search },
-  { href: '/matches', label: 'Matches', icon: Heart, count: 2 },
-  { href: '/deals', label: 'Deals', icon: Briefcase },
-  { href: '/messages', label: 'Messages', icon: MessageSquare, count: 3 },
-  { href: '/profile', label: 'Profile', icon: User },
-  { href: '/settings', label: 'Settings', icon: Settings },
-];
+interface NavigationItem {
+  href: string;
+  label: string;
+  icon: React.ComponentType<any>;
+  count?: number;
+}
 
 interface DashboardLayoutClientProps {
   children: React.ReactNode;
@@ -36,7 +36,53 @@ interface DashboardLayoutClientProps {
 
 export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [userType, setUserType] = useState<'buyer' | 'seller'>('buyer');
+  const [userName, setUserName] = useState('John Doe');
   const pathname = usePathname();
+
+  useEffect(() => {
+    const storedUserType = localStorage.getItem('userType') as 'buyer' | 'seller';
+    const storedUserEmail = localStorage.getItem('userEmail');
+    
+    if (storedUserType) {
+      setUserType(storedUserType);
+    }
+    
+    if (storedUserEmail) {
+      if (storedUserEmail.includes('buyer')) {
+        setUserName('Sarah Chen');
+      } else if (storedUserEmail.includes('seller')) {
+        setUserName('David Kim');
+      }
+    }
+  }, []);
+
+  const getNavigationItems = (): NavigationItem[] => {
+    if (userType === 'buyer') {
+      return [
+        { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+        { href: '/discover', label: 'Discover', icon: Search },
+        { href: '/matches', label: 'Matches', icon: Heart, count: 2 },
+        { href: '/deals', label: 'My Deals', icon: Briefcase },
+        { href: '/messages', label: 'Messages', icon: MessageSquare, count: 3 },
+        { href: '/profile', label: 'Profile', icon: User },
+        { href: '/settings', label: 'Settings', icon: Settings },
+      ];
+    } else {
+      return [
+        { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+        { href: '/my-listing', label: 'My Listing', icon: Building },
+        { href: '/interested-buyers', label: 'Interested Buyers', icon: Heart, count: 5 },
+        { href: '/deals', label: 'Active Deals', icon: Briefcase },
+        { href: '/analytics', label: 'Analytics', icon: BarChart3 },
+        { href: '/messages', label: 'Messages', icon: MessageSquare, count: 3 },
+        { href: '/profile', label: 'Profile', icon: User },
+        { href: '/settings', label: 'Settings', icon: Settings },
+      ];
+    }
+  };
+
+  const navigationItems = getNavigationItems();
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -70,16 +116,35 @@ export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) 
           </Button>
         </div>
 
+        {/* User Type Badge */}
+        <div className="px-6 py-3 border-b border-gray-100">
+          <Badge 
+            variant="secondary" 
+            className={userType === 'buyer' 
+              ? 'bg-blue-100 text-blue-800 hover:bg-blue-200' 
+              : 'bg-green-100 text-green-800 hover:bg-green-200'
+            }
+          >
+            {userType === 'buyer' ? '👤 Buyer Account' : '🏢 Seller Account'}
+          </Badge>
+        </div>
+
         {/* Navigation */}
         <nav className="mt-6 px-3">
           <div className="space-y-1">
-            {NAVIGATION_ITEMS.map((item) => {
+            {navigationItems.map((item) => {
+              // Ensure href is valid
+              if (!item.href || typeof item.href !== 'string') {
+                console.warn('Invalid href for navigation item:', item);
+                return null;
+              }
+
               const Icon = item.icon;
               const isActive = pathname === item.href;
               
               return (
                 <Link
-                  key={item.href}
+                  key={item.href} // Use href as unique key
                   href={item.href}
                   className={`flex items-center justify-between px-3 py-3 text-sm font-medium rounded-lg transition-colors group ${
                     isActive
@@ -104,6 +169,39 @@ export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) 
             })}
           </div>
         </nav>
+
+        {/* Account Switcher (Optional) */}
+        <div className="absolute bottom-4 left-4 right-4">
+          <div className="p-3 bg-gray-50 rounded-lg">
+            <p className="text-xs text-gray-600 mb-2">Switch account type</p>
+            <div className="flex space-x-2">
+              <Button 
+                variant={userType === 'buyer' ? 'default' : 'outline'} 
+                size="sm" 
+                className="flex-1 text-xs"
+                onClick={() => {
+                  localStorage.setItem('userType', 'buyer');
+                  setUserType('buyer');
+                  setUserName('Sarah Chen');
+                }}
+              >
+                Buyer
+              </Button>
+              <Button 
+                variant={userType === 'seller' ? 'default' : 'outline'} 
+                size="sm" 
+                className="flex-1 text-xs"
+                onClick={() => {
+                  localStorage.setItem('userType', 'seller');
+                  setUserType('seller');
+                  setUserName('David Kim');
+                }}
+              >
+                Seller
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Main content */}
@@ -129,12 +227,27 @@ export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) 
             
             <div className="flex items-center space-x-3">
               <Avatar className="w-8 h-8">
-                <AvatarImage src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32" alt="User" />
-                <AvatarFallback>JD</AvatarFallback>
+                <AvatarImage 
+                  src={userType === 'buyer' 
+                    ? 'https://images.unsplash.com/photo-1494790108755-2616b612b5bc?w=32' 
+                    : 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32'
+                  } 
+                  alt="User" 
+                />
+                <AvatarFallback>
+                  {userName.split(' ').map(n => n[0]).join('')}
+                </AvatarFallback>
               </Avatar>
               <div className="hidden sm:block">
-                <div className="text-sm font-medium text-gray-900">John Doe</div>
-                <div className="text-xs text-gray-500">Buyer</div>
+                <div className="text-sm font-medium text-gray-900">{userName}</div>
+                <div className="text-xs text-gray-500 capitalize flex items-center">
+                  {userType}
+                  {userType === 'buyer' ? (
+                    <div className="w-2 h-2 bg-blue-500 rounded-full ml-2"></div>
+                  ) : (
+                    <div className="w-2 h-2 bg-green-500 rounded-full ml-2"></div>
+                  )}
+                </div>
               </div>
             </div>
           </div>

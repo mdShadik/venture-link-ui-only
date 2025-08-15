@@ -1,7 +1,6 @@
-
 import { DashboardLayoutClient } from "@/components/layout/dashboard-layout-client.tsx";
 
-export default function MatchesLayout({
+export default function SettingsLayout({
   children,
 }: {
   children: React.ReactNode;
