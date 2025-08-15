@@ -1,4 +1,3 @@
-// app/dashboard/dashboard-layout-client.tsx
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -21,7 +20,7 @@ import {
   BarChart3
 } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface NavigationItem {
   href: string;
@@ -39,6 +38,7 @@ export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) 
   const [userType, setUserType] = useState<'buyer' | 'seller'>('buyer');
   const [userName, setUserName] = useState('John Doe');
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const storedUserType = localStorage.getItem('userType') as 'buyer' | 'seller';
@@ -183,6 +183,7 @@ export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) 
                   localStorage.setItem('userType', 'buyer');
                   setUserType('buyer');
                   setUserName('Sarah Chen');
+                  router.push('/dashboard');
                 }}
               >
                 Buyer
@@ -195,6 +196,7 @@ export function DashboardLayoutClient({ children }: DashboardLayoutClientProps) 
                   localStorage.setItem('userType', 'seller');
                   setUserType('seller');
                   setUserName('David Kim');
+                  router.push("/dashboard");
                 }}
               >
                 Seller
